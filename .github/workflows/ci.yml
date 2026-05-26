@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Prettier, Lint, Typecheck, and Test
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
