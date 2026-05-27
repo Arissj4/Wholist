@@ -9,7 +9,7 @@ export type User = {
     city: string;
     zipcode: string;
     geo: {
-      lnt: string;
+      lat: string;
       lng: string;
     };
     phone: string;
