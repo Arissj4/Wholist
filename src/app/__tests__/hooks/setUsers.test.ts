@@ -47,3 +47,26 @@ it("starts with loading: true", () => {
   expect(result.current.users).toHaveLength(0);
   expect(result.current.error).toBeNull();
 });
+
+it("returns users after successful fetch", async () => {
+  mockFetchUsers.mockResolvedValue(mockUsers);
+
+  const { result } = renderHook(() => useUsers());
+
+  await waitFor(() => expect(result.current.loading).toBe(false));
+
+  expect(result.current.users).toHaveLength(1);
+  expect(result.current.users[0].name).toBe("Alice");
+  expect(result.current.error).toBeNull();
+});
+
+it("sets error when fetch fails", async () => {
+  mockFetchUsers.mockRejectedValue(new Error("network error"));
+
+  const { result } = renderHook(() => useUsers());
+
+  await waitFor(() => expect(result.current.loading).toBe(false));
+
+  expect(result.current.error).toBe("Failed to load users");
+  expect(result.current.users).toHaveLength(0);
+});
