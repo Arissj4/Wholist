@@ -56,7 +56,7 @@ it("returns users after successful fetch", async () => {
   await waitFor(() => expect(result.current.loading).toBe(false));
 
   expect(result.current.users).toHaveLength(1);
-  expect(result.current.users[0].name).toBe("Alice");
+  expect(result.current.users[0].name).toBe("Leanne Graham");
   expect(result.current.error).toBeNull();
 });
 
