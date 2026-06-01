@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    class="user-card"
+  >
+    <p>
+      Leanne Graham
+    </p>
+    <p>
+      Sincere@april.biz
+    </p>
+    <p>
+      Gwenborough
+    </p>
+    <p>
+      Romaguera-Crona
+    </p>
+  </div>
+</div>
+`;
