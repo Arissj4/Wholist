@@ -1,5 +1,4 @@
 import { UserList } from "@/components/UserList";
-import Image from "next/image";
 
 export default function Home() {
   return (
