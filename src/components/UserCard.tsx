@@ -6,7 +6,7 @@ type Props = {
 
 export default function UserCard({ user }: Props) {
   return (
-    <div className="user-card">
+    <div className="user-card" data-testid="user-card">
       <p>{user.name}</p>
       <p>{user.email}</p>
       <p>{user.address.city}</p>
