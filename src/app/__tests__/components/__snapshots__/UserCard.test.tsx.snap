@@ -3,21 +3,37 @@
 exports[`matches snapshot 1`] = `
 <div>
   <div
-    class="user-card"
+    class="user-card flex m-2 p-3 border rounded-lg"
     data-testid="user-card"
   >
-    <p>
-      Leanne Graham
-    </p>
-    <p>
-      Sincere@april.biz
-    </p>
-    <p>
-      Gwenborough
-    </p>
-    <p>
-      Romaguera-Crona
-    </p>
+    <div
+      class="w-[50%]"
+    >
+      <p>
+        Owner:
+      </p>
+      <p>
+        Name: 
+        Leanne Graham
+      </p>
+      <p>
+        Email: 
+        Sincere@april.biz
+      </p>
+    </div>
+    <div
+      class="w-[50%]"
+    >
+      Company:
+      <p>
+        City: 
+        Gwenborough
+      </p>
+      <p>
+        Name: 
+        Romaguera-Crona
+      </p>
+    </div>
   </div>
 </div>
 `;

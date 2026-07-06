@@ -6,11 +6,20 @@ type Props = {
 
 export default function UserCard({ user }: Props) {
   return (
-    <div className="user-card" data-testid="user-card">
-      <p>{user.name}</p>
-      <p>{user.email}</p>
-      <p>{user.address.city}</p>
-      <p>{user.company.name}</p>
+    <div
+      className="user-card flex m-2 p-3 border rounded-lg"
+      data-testid="user-card"
+    >
+      <div className="w-[50%]">
+        <p>Owner:</p>
+        <p>Name: {user.name}</p>
+        <p>Email: {user.email}</p>
+      </div>
+      <div className="w-[50%]">
+        Company:
+        <p>City: {user.address.city}</p>
+        <p>Name: {user.company.name}</p>
+      </div>
     </div>
   );
 }

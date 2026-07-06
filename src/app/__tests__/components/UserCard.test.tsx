@@ -30,15 +30,15 @@ const mockUser = {
 it("renders the user name", () => {
   render(<UserCard user={mockUser} />);
 
-  expect(screen.getByText("Leanne Graham")).toBeInTheDocument();
+  expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
 });
 
 it("renders the email, city and company", () => {
   render(<UserCard user={mockUser} />);
 
-  expect(screen.getByText("Sincere@april.biz")).toBeInTheDocument();
-  expect(screen.getByText("Gwenborough")).toBeInTheDocument();
-  expect(screen.getByText("Romaguera-Crona")).toBeInTheDocument();
+  expect(screen.getByText("Email: Sincere@april.biz")).toBeInTheDocument();
+  expect(screen.getByText("City: Gwenborough")).toBeInTheDocument();
+  expect(screen.getByText("Name: Romaguera-Crona")).toBeInTheDocument();
 });
 
 it("matches snapshot", () => {
