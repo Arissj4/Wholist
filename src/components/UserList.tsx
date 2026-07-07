@@ -11,6 +11,10 @@ export function UserList() {
   if (loading) return <p data-testid="loading">Loading...</p>;
   if (error) return <p data-testid="error">{error}</p>;
 
+  const filtered = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div className="flex flex-col items-center justify-center">
       <input
@@ -21,7 +25,7 @@ export function UserList() {
         onChange={(e) => setSearch(e.target.value)}
       />
       <ul className="w-full" data-testid="user-list">
-        {users.map((user) => (
+        {filtered.map((user) => (
           <li key={user.id}>
             <UserCard user={user} />
           </li>
