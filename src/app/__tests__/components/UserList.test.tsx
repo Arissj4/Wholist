@@ -1,6 +1,7 @@
 import { UserList } from "@/components/UserList";
 import { useUsers } from "@/hooks/useUsers";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 jest.mock("@/hooks/useUsers");
 
@@ -144,4 +145,23 @@ it("Renders a card for each user", () => {
 
   expect(screen.getByTestId("user-list")).toBeInTheDocument();
   expect(screen.getAllByTestId("user-card")).toHaveLength(4);
+});
+
+it("Filter users by name when typing in the search input", async () => {
+  const user = userEvent.setup();
+
+  mockUseUsers.mockReturnValue({
+    users: mockUsers,
+    loading: false,
+    error: null,
+  });
+
+  render(<UserList />);
+
+  const input = screen.getByTestId("search-input");
+
+  await user.type(input, "Leanne");
+
+  expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
+  expect(screen.queryByText("Name: Ervin Howell")).not.toBeInTheDocument();
 });
