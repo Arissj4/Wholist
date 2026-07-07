@@ -165,3 +165,23 @@ it("Filter users by name when typing in the search input", async () => {
   expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
   expect(screen.queryByText("Name: Ervin Howell")).not.toBeInTheDocument();
 });
+
+it("Shows all users when search input is cleared", async () => {
+  const user = userEvent.setup();
+
+  mockUseUsers.mockReturnValue({
+    users: mockUsers,
+    loading: false,
+    error: null,
+  });
+
+  render(<UserList />);
+
+  const input = screen.getByTestId("search-input");
+
+  await user.type(input, "Leanne");
+  await user.clear(input);
+
+  expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
+  expect(screen.getByText("Name: Ervin Howell")).toBeInTheDocument();
+});
