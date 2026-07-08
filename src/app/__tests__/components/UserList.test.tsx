@@ -185,3 +185,21 @@ it("Shows all users when search input is cleared", async () => {
   expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
   expect(screen.getByText("Name: Ervin Howell")).toBeInTheDocument();
 });
+
+it("Show no cards when search matches nobody", async () => {
+  const user = userEvent.setup();
+
+  mockUseUsers.mockReturnValue({
+    users: mockUsers,
+    loading: false,
+    error: null,
+  });
+
+  render(<UserList />);
+
+  const input = screen.getByTestId("search-input");
+
+  await user.type(input, "ZZZ");
+
+  expect(screen.queryAllByTestId("user-card")).toHaveLength(0);
+});
