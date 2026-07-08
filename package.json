@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "jest --watchAll",
     "test:ci": "jest",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:ci",
+    "test:coverage": "jest --coverage",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage",
     "push-check": "npm run format:check && npm run lint && npm run typecheck"
   },
   "dependencies": {
