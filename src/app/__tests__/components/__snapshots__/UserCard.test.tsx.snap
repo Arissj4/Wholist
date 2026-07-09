@@ -3,14 +3,16 @@
 exports[`matches snapshot 1`] = `
 <div>
   <div
-    class="user-card flex m-2 p-3 border rounded-lg"
+    class="user-card flex my-4 p-3 border rounded-lg border-gray-600 bg-[#1A1A1A] shadow-md shadow-[rgba(255,255,255,0.3)]"
     data-testid="user-card"
   >
     <div
       class="w-[50%]"
     >
-      <p>
-        Owner:
+      <p
+        class="text-amber-200 text-[18px] mb-1"
+      >
+        Owner
       </p>
       <p>
         Name: 
@@ -24,7 +26,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="w-[50%]"
     >
-      Company:
+      <p
+        class="text-amber-200 text-[18px] mb-1"
+      >
+        Company
+      </p>
       <p>
         City: 
         Gwenborough
