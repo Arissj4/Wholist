@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SearchState {
   query: string;
-  statusFilter: 'all'| 'active' | 'inactive';
+  statusFilter: "all" | "active" | "inactive";
 }
 
 const initialState: SearchState = {
-  query: '',
+  query: "",
   statusFilter: "all",
-}
+};
 
 const searchSlice = createSlice({
   name: "search",
@@ -17,15 +17,15 @@ const searchSlice = createSlice({
     setQuery(state, action: PayloadAction<string>) {
       state.query = action.payload;
     },
-    setStatusFilter(state, action:PayloadAction<SearchState['statusFilter']>){
+    setStatusFilter(state, action: PayloadAction<SearchState["statusFilter"]>) {
       state.statusFilter = action.payload;
     },
-    clearFilters(state){
-      state.query = '';
-      state.statusFilter = 'all';
+    clearFilters(state) {
+      state.query = "";
+      state.statusFilter = "all";
     },
   },
 });
 
-export const{ setQuery, setStatusFilter, clearFilters } = searchSlice.actions;
+export const { setQuery, setStatusFilter, clearFilters } = searchSlice.actions;
 export default searchSlice.reducer;
