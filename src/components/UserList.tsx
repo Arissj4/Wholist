@@ -2,11 +2,13 @@
 
 import { useUsers } from "@/hooks/useUsers";
 import UserCard from "./UserCard";
-import { useState } from "react";
+import SearchBar from "./SearchBar";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export function UserList() {
   const { users, loading, error } = useUsers();
-  const [search, setSearch] = useState("");
+  const query = useSelector((state: RootState) => state.search.query);
 
   if (loading)
     return (
@@ -17,19 +19,12 @@ export function UserList() {
   if (error) return <p data-testid="error">{error}</p>;
 
   const filtered = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase()),
+    user.name.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <input
-        className="bg-white text-black mb-2 p-1 rounded-sm"
-        data-testid="search-input"
-        type="text"
-        placeholder="Search users ..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <SearchBar />
       <ul className="w-full" data-testid="user-list">
         {filtered.map((user) => (
           <li key={user.id}>
