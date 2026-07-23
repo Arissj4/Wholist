@@ -1,7 +1,8 @@
 import { UserList } from "@/components/UserList";
 import { useUsers } from "@/hooks/useUsers";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderWithStore } from "../../../test-utils/renderWithStore";
 
 jest.mock("@/hooks/useUsers");
 
@@ -113,7 +114,7 @@ it("Shows a loading indicator while fetching", () => {
     error: null,
   });
 
-  render(<UserList />);
+  renderWithStore(<UserList />);
 
   expect(screen.getByTestId("loading")).toBeInTheDocument();
   expect(screen.getByText("Loading...")).toBeInTheDocument();
@@ -126,7 +127,7 @@ it("Shows an error message when fetch fails", () => {
     error: "An error occurred, please try again",
   });
 
-  render(<UserList />);
+  renderWithStore(<UserList />);
 
   expect(screen.getByTestId("error")).toBeInTheDocument();
   expect(
@@ -141,7 +142,7 @@ it("Renders a card for each user", () => {
     error: null,
   });
 
-  render(<UserList />);
+  renderWithStore(<UserList />);
 
   expect(screen.getByTestId("user-list")).toBeInTheDocument();
   expect(screen.getAllByTestId("user-card")).toHaveLength(4);
@@ -156,7 +157,7 @@ it("Filter users by name when typing in the search input", async () => {
     error: null,
   });
 
-  render(<UserList />);
+  renderWithStore(<UserList />);
 
   const input = screen.getByTestId("search-input");
 
@@ -175,7 +176,7 @@ it("Shows all users when search input is cleared", async () => {
     error: null,
   });
 
-  render(<UserList />);
+  renderWithStore(<UserList />);
 
   const input = screen.getByTestId("search-input");
 
@@ -195,7 +196,7 @@ it("Show no cards when search matches nobody", async () => {
     error: null,
   });
 
-  render(<UserList />);
+  renderWithStore(<UserList />);
 
   const input = screen.getByTestId("search-input");
 
