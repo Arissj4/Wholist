@@ -1,12 +1,17 @@
 import { UserList } from "@/components/UserList";
-import { useUsers } from "@/hooks/useUsers";
+import { useGetUsersQuery, usersAPI } from "../../../../store/usersAPI";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithStore } from "../../../test-utils/renderWithStore";
 
-jest.mock("@/hooks/useUsers");
+jest.mock("../../../../store/usersAPI", () => ({
+  ...jest.requireActual("../../../../store/usersAPI"),
+  useGetUsersQuery: jest.fn(),
+}));
 
-const mockUseUsers = useUsers as jest.MockedFunction<typeof useUsers>;
+const mockUseGetUsersQuery = useGetUsersQuery as jest.MockedFunction<
+  typeof useGetUsersQuery
+>;
 
 const mockUsers = [
   {
@@ -108,11 +113,11 @@ beforeEach(() => {
 });
 
 it("Shows a loading indicator while fetching", () => {
-  mockUseUsers.mockReturnValue({
-    users: [],
-    loading: true,
-    error: null,
-  });
+  mockUseGetUsersQuery.mockReturnValue({
+    data: undefined,
+    isLoading: true,
+    isError: false,
+  } as unknown as ReturnType<typeof usersAPI.useGetUsersQuery>);
 
   renderWithStore(<UserList />);
 
@@ -121,11 +126,11 @@ it("Shows a loading indicator while fetching", () => {
 });
 
 it("Shows an error message when fetch fails", () => {
-  mockUseUsers.mockReturnValue({
-    users: [],
-    loading: false,
-    error: "An error occurred, please try again",
-  });
+  mockUseGetUsersQuery.mockReturnValue({
+    data: undefined,
+    isLoading: false,
+    isError: true,
+  } as unknown as ReturnType<typeof useGetUsersQuery>);
 
   renderWithStore(<UserList />);
 
@@ -136,11 +141,11 @@ it("Shows an error message when fetch fails", () => {
 });
 
 it("Renders a card for each user", () => {
-  mockUseUsers.mockReturnValue({
-    users: mockUsers,
-    loading: false,
-    error: null,
-  });
+  mockUseGetUsersQuery.mockReturnValue({
+    data: mockUsers,
+    isLoading: false,
+    isError: false,
+  } as unknown as ReturnType<typeof useGetUsersQuery>);
 
   renderWithStore(<UserList />);
 
@@ -151,11 +156,11 @@ it("Renders a card for each user", () => {
 it("Filter users by name when typing in the search input", async () => {
   const user = userEvent.setup();
 
-  mockUseUsers.mockReturnValue({
-    users: mockUsers,
-    loading: false,
-    error: null,
-  });
+  mockUseGetUsersQuery.mockReturnValue({
+    data: mockUsers,
+    isLoading: false,
+    isError: false,
+  } as unknown as ReturnType<typeof useGetUsersQuery>);
 
   renderWithStore(<UserList />);
 
@@ -170,11 +175,11 @@ it("Filter users by name when typing in the search input", async () => {
 it("Shows all users when search input is cleared", async () => {
   const user = userEvent.setup();
 
-  mockUseUsers.mockReturnValue({
-    users: mockUsers,
-    loading: false,
-    error: null,
-  });
+  mockUseGetUsersQuery.mockReturnValue({
+    data: mockUsers,
+    isLoading: false,
+    isError: false,
+  } as unknown as ReturnType<typeof useGetUsersQuery>);
 
   renderWithStore(<UserList />);
 
@@ -190,11 +195,11 @@ it("Shows all users when search input is cleared", async () => {
 it("Show no cards when search matches nobody", async () => {
   const user = userEvent.setup();
 
-  mockUseUsers.mockReturnValue({
-    users: mockUsers,
-    loading: false,
-    error: null,
-  });
+  mockUseGetUsersQuery.mockReturnValue({
+    data: mockUsers,
+    isLoading: false,
+    isError: false,
+  } as unknown as ReturnType<typeof useGetUsersQuery>);
 
   renderWithStore(<UserList />);
 

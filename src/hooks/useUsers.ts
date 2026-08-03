@@ -20,7 +20,11 @@ export function useUsers() {
     fetchUsers()
       .then((users) => setState({ users, loading: false, error: null }))
       .catch(() => {
-        setState({ users: [], loading: false, error: "Failed to load users" });
+        setState({
+          users: [],
+          loading: false,
+          error: "An error occurred, please try again",
+        });
       });
   }, []);
 
