@@ -1,13 +1,14 @@
 "use client";
 
-import { useUsers } from "@/hooks/useUsers";
+import { useGetUsersQuery } from "../../store/usersAPI";
 import UserCard from "./UserCard";
 import SearchBar from "./SearchBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 export function UserList() {
-  const { users, loading, error } = useUsers();
+  const { data: users = [], isLoading: loading, isError } = useGetUsersQuery();
+  const error = isError ? "Failed to load users" : null;
   const query = useSelector((state: RootState) => state.search.query);
 
   if (loading)
