@@ -16,4 +16,10 @@ describe("searchSlice", () => {
     expect(res.query).toEqual("Lemme");
     expect(res.statusFilter).toEqual("all");
   });
+
+  it("Updated statusFilter on setStatusFilter", () => {
+    const res = reducer(initialState, setStatusFilter("active"));
+    expect(res.statusFilter).toEqual("active");
+    expect(res.query).toEqual("");
+  });
 });
