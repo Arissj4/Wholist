@@ -5,7 +5,7 @@ interface SearchState {
   statusFilter: "all" | "active" | "inactive";
 }
 
-const initialState: SearchState = {
+export const initialState: SearchState = {
   query: "",
   statusFilter: "all",
 };
