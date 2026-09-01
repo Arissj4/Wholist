@@ -22,4 +22,9 @@ describe("searchSlice", () => {
     expect(res.statusFilter).toEqual("active");
     expect(res.query).toEqual("");
   });
+
+  it("resets both fields of clearFilters", () => {
+    const res = reducer({query: "Lemme", statusFilter: "active"}, clearFilters());
+    expect(res).toEqual(initialState);
+  });
 });
