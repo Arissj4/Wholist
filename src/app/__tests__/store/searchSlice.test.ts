@@ -24,7 +24,10 @@ describe("searchSlice", () => {
   });
 
   it("resets both fields of clearFilters", () => {
-    const res = reducer({query: "Lemme", statusFilter: "active"}, clearFilters());
+    const res = reducer(
+      { query: "Lemme", statusFilter: "active" },
+      clearFilters(),
+    );
     expect(res).toEqual(initialState);
   });
 });
