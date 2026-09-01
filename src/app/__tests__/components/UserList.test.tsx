@@ -135,9 +135,7 @@ it("Shows an error message when fetch fails", () => {
   renderWithStore(<UserList />);
 
   expect(screen.getByTestId("error")).toBeInTheDocument();
-  expect(
-    screen.getByText("An error occurred, please try again"),
-  ).toBeInTheDocument();
+  expect(screen.getByText("Failed to load users")).toBeInTheDocument();
 });
 
 it("Renders a card for each user", () => {
